@@ -46,11 +46,11 @@ class ChainProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         foreach ($this->providers as $provider) {
             try {
-                return $provider->getGeocodedData($address);
+                return $provider->getGeocodedData($address, $boundingBox);
             } catch (InvalidCredentialsException $e) {
                 throw $e;
             } catch (\Exception $e) {

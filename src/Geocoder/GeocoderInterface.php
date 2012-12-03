@@ -10,6 +10,7 @@
 
 namespace Geocoder;
 
+use Geocoder\Query\BoundingBox;
 use Geocoder\Result\Geocoded;
 
 /**
@@ -21,10 +22,11 @@ interface GeocoderInterface
      * Geocode a given value.
      *
      * @param string $value A value to geocode.
+     * @param BoundingBox $boundingBox A bounding box to filter ambiguous results.
      *
      * @return Geocoded A Geocoded result object.
      */
-    public function geocode($value);
+    public function geocode($value, $boundingBox = null);
 
     /**
      * Reverse geocode given latitude and longitude values.

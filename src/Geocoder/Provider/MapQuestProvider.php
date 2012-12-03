@@ -31,7 +31,7 @@ class MapQuestProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         // This API doesn't handle IPs
         if (filter_var($address, FILTER_VALIDATE_IP)) {
@@ -39,6 +39,9 @@ class MapQuestProvider extends AbstractProvider implements ProviderInterface
         }
 
         $query = sprintf(self::GEOCODE_ENDPOINT_URL, urlencode($address));
+        if (null !== $boundingBox) {
+            $query = sprintf('%s&boundingBox=%f,%f,%f,%f', $query, $boundingBox->getMinLongitude(), $boundingBox->getMaxLatitude(), $boundingBox->getMaxLongitude(), $boundingBox->getMinLatitude());
+        }
 
         return $this->executeQuery($query);
     }

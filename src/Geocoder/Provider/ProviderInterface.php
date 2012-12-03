@@ -10,6 +10,7 @@
 
 namespace Geocoder\Provider;
 
+use Geocoder\Query\BoundingBox;
 use Geocoder\Exception\NoResultException;
 use Geocoder\Exception\InvalidCredentialsException;
 
@@ -22,13 +23,14 @@ interface ProviderInterface
      * Returns an associative array with data treated by the provider.
      *
      * @param string $address An address (IP or street).
+     * @param BoundingBox $boundingBox A bounding box to filter ambiguous results.
      *
      * @throws NoResultException           If the address could not be resolved
      * @throws InvalidCredentialsException If the credentials are invalid
      *
      * @return array
      */
-    public function getGeocodedData($address);
+    public function getGeocodedData($address, $boundingBox = null);
 
     /**
      * Returns an associative array with data treated by the provider.

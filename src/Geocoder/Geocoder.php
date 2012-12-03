@@ -44,14 +44,14 @@ class Geocoder implements GeocoderInterface
     /**
      * {@inheritDoc}
      */
-    public function geocode($value)
+    public function geocode($value, $boundingBox = null)
     {
         if (empty($value)) {
             // let's save a request
             return $this->returnResult(array());
         }
 
-        $data   = $this->getProvider()->getGeocodedData(trim($value));
+        $data   = $this->getProvider()->getGeocodedData(trim($value), $boundingBox);
         $result = $this->returnResult($data);
 
         return $result;

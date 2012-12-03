@@ -41,7 +41,7 @@ class GoogleMapsProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         // Google API returns invalid data if IP address given
         // This API doesn't handle IPs
@@ -50,6 +50,9 @@ class GoogleMapsProvider extends AbstractProvider implements ProviderInterface
         }
 
         $query = sprintf(self::ENDPOINT_URL, rawurlencode($address));
+        if (null !== $boundingBox) {
+            $query = sprintf('%s&bounds=%f,%f|%f,%f', $query, $boundingBox->getMinLatitude(), $boundingBox->getMinLongitude(), $boundingBox->getMaxLatitude(), $boundingBox->getMaxLongitude());
+        }
 
         return $this->executeQuery($query);
     }
@@ -147,6 +150,8 @@ class GoogleMapsProvider extends AbstractProvider implements ProviderInterface
                 'east'  => $coordinates->lng
             );
         }
+
+        $resultset['geocodedAddress'] = $result->formatted_address;
 
         return array_merge($this->getDefaults(), $resultset);
     }

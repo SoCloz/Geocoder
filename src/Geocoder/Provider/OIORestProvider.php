@@ -31,7 +31,7 @@ class OIORestProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         // This API doesn't handle IPs
         if (filter_var($address, FILTER_VALIDATE_IP)) {

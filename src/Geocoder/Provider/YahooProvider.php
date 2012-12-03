@@ -50,7 +50,7 @@ class YahooProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         if (null === $this->apiKey) {
             throw new InvalidCredentialsException('No API Key provided');

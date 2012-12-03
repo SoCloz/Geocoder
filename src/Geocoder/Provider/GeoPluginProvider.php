@@ -26,7 +26,7 @@ class GeoPluginProvider extends AbstractProvider implements ProviderInterface
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         if (!filter_var($address, FILTER_VALIDATE_IP)) {
             throw new UnsupportedException('The GeoPluginProvider does not support street addresses.');

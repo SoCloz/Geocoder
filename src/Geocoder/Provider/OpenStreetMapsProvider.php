@@ -31,7 +31,7 @@ class OpenStreetMapsProvider extends AbstractProvider implements ProviderInterfa
     /**
      * {@inheritDoc}
      */
-    public function getGeocodedData($address)
+    public function getGeocodedData($address, $boundingBox = null)
     {
         // This API does not support IPv6
         if (filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
@@ -43,6 +43,9 @@ class OpenStreetMapsProvider extends AbstractProvider implements ProviderInterfa
         }
 
         $query   = sprintf(self::GEOCODE_ENDPOINT_URL, urlencode($address));
+        if (null !== $boundingBox) {
+            $query = sprintf('%s&viewbox=%f,%f,%f,%f', $query, $boundingBox->getMinLongitude(), $boundingBox->getMaxLatitude(), $boundingBox->getMaxLongitude(), $boundingBox->getMinLatitude());
+        }
         $content = $this->executeQuery($query);
 
         if (null === $content) {
