@@ -108,6 +108,7 @@ abstract class AbstractProvider
             'country'       => null,
             'countryCode'   => null,
             'timezone'      => null,
+            'source'        => $this->getName()
         );
     }
 
@@ -123,6 +124,7 @@ abstract class AbstractProvider
             'region'    => 'localhost',
             'county'    => 'localhost',
             'country'   => 'localhost',
+            'source'    => $this->getName()
         );
     }
 }

@@ -91,6 +91,16 @@ class Geocoded implements ResultInterface, \ArrayAccess
     protected $timezone = null;
 
     /**
+     * @var string
+     */
+    protected $geocodedAddress = null;
+
+    /**
+     * @var string
+     */
+    protected $source = null;
+
+    /**
      * {@inheritDoc}
      */
     public function getCoordinates()
@@ -221,6 +231,22 @@ class Geocoded implements ResultInterface, \ArrayAccess
     /**
      * {@inheritDoc}
      */
+    public function getGeocodedAddress()
+    {
+        return $this->geocodedAddress;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function fromArray(array $data = array())
     {
         if (isset($data['latitude'])) {
@@ -287,6 +313,14 @@ class Geocoded implements ResultInterface, \ArrayAccess
         if (isset($data['timezone'])) {
             $this->timezone = (string) $data['timezone'];
         }
+
+        if (isset($data['geocodedAddress'])) {
+            $this->geocodedAddress = (string) $data['geocodedAddress'];
+        }
+
+        if (isset($data['source'])) {
+            $this->source = (string) $data['source'];
+        }
     }
 
     /**
@@ -295,21 +329,23 @@ class Geocoded implements ResultInterface, \ArrayAccess
     public function toArray()
     {
         return array(
-            'latitude'      => $this->latitude,
-            'longitude'     => $this->longitude,
-            'bounds'        => $this->bounds,
-            'streetNumber'  => $this->streetNumber,
-            'streetName'    => $this->streetName,
-            'zipcode'       => $this->zipcode,
-            'city'          => $this->city,
-            'cityDistrict'  => $this->cityDistrict,
-            'county'        => $this->county,
-            'countyCode'    => $this->countyCode,
-            'region'        => $this->region,
-            'regionCode'    => $this->regionCode,
-            'country'       => $this->country,
-            'countryCode'   => $this->countryCode,
-            'timezone'      => $this->timezone,
+            'latitude'         => $this->latitude,
+            'longitude'        => $this->longitude,
+            'bounds'           => $this->bounds,
+            'streetNumber'     => $this->streetNumber,
+            'streetName'       => $this->streetName,
+            'zipcode'          => $this->zipcode,
+            'city'             => $this->city,
+            'cityDistrict'     => $this->cityDistrict,
+            'county'           => $this->county,
+            'countyCode'       => $this->countyCode,
+            'region'           => $this->region,
+            'regionCode'       => $this->regionCode,
+            'country'          => $this->country,
+            'countryCode'      => $this->countryCode,
+            'timezone'         => $this->timezone,
+            'geocodedAddress'  => $this->geocodedAddress,
+            'source'           => $this->source,
         );
     }
 

@@ -138,6 +138,20 @@ interface ResultInterface
     public function getTimezone();
 
     /**
+     * Returns the geocoded address.
+     *
+     * @return string
+     */
+    public function getGeocodedAddress();
+
+    /**
+     * Returns the name of the geocoding provider.
+     *
+     * @return string
+     */
+    public function getSource();
+
+    /**
      * Extracts data from an array.
      *
      * @param array $data An array.

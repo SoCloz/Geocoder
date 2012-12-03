@@ -84,18 +84,21 @@ class MapQuestProvider extends AbstractProvider implements ProviderInterface
 
             if (isset($result['locations']) && !empty($result['locations'])) {
                 $location = current($result['locations']);
+                
+                $geocodedAddress = ($location['street'] ?$location['street'].", ": "").($location['postalCode']?$location['postalCode']." ":"").$location['adminArea5'];
 
                 // TODO: maybe add more information using the link below:
                 // http://open.mapquestapi.com/geocoding/
                 return array_merge($this->getDefaults(), array(
-                    'latitude'      => $location['latLng']['lat'],
-                    'longitude'     => $location['latLng']['lng'],
-                    'streetName'    => $location['street'] ?: null,
-                    'city'          => $location['adminArea5'] ?: null,
-                    'zipcode'       => $location['postalCode'] ?: null,
-                    'county'        => $location['adminArea4'] ?: null,
-                    'region'        => $location['adminArea3'] ?: null,
-                    'country'       => $location['adminArea1'] ?: null,
+                    'latitude'         => $location['latLng']['lat'],
+                    'longitude'        => $location['latLng']['lng'],
+                    'streetName'       => $location['street'] ?: null,
+                    'city'             => $location['adminArea5'] ?: null,
+                    'zipcode'          => $location['postalCode'] ?: null,
+                    'county'           => $location['adminArea4'] ?: null,
+                    'region'           => $location['adminArea3'] ?: null,
+                    'country'          => $location['adminArea1'] ?: null,
+                    'geocodedAddress'  => $geocodedAddress,
                 ));
             }
         }

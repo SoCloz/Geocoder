@@ -69,18 +69,19 @@ class OpenStreetMapsProvider extends AbstractProvider implements ProviderInterfa
 
         $ret = $this->getDefaults();
 
-        $ret['latitude']     = $place->getAttribute('lat');
-        $ret['longitude']    = $place->getAttribute('lon');
-        $ret['bounds']       = $bounds;
-        $ret['zipcode']      = $this->getNodeValue($place->getElementsByTagName('postcode'));
-        $ret['county']       = $this->getNodeValue($place->getElementsByTagName('county'));
-        $ret['region']       = $this->getNodeValue($place->getElementsByTagName('state'));
-        $ret['streetNumber'] = $this->getNodeValue($place->getElementsByTagName('house_number'));
-        $ret['streetName']   = $this->getNodeValue($place->getElementsByTagName('road'));
-        $ret['city']         = $this->getNodeValue($place->getElementsByTagName('city'));
-        $ret['cityDistrict'] = $this->getNodeValue($place->getElementsByTagName('suburb'));
-        $ret['country']      = $this->getNodeValue($place->getElementsByTagName('country'));
-        $ret['countryCode']  = strtoupper($this->getNodeValue($place->getElementsByTagName('country_code')));
+        $ret['latitude']        = $place->getAttribute('lat');
+        $ret['longitude']       = $place->getAttribute('lon');
+        $ret['bounds']          = $bounds;
+        $ret['zipcode']         = $this->getNodeValue($place->getElementsByTagName('postcode'));
+        $ret['county']          = $this->getNodeValue($place->getElementsByTagName('county'));
+        $ret['region']          = $this->getNodeValue($place->getElementsByTagName('state'));
+        $ret['streetNumber']    = $this->getNodeValue($place->getElementsByTagName('house_number'));
+        $ret['streetName']      = $this->getNodeValue($place->getElementsByTagName('road'));
+        $ret['city']            = $this->getNodeValue($place->getElementsByTagName('city'));
+        $ret['cityDistrict']    = $this->getNodeValue($place->getElementsByTagName('suburb'));
+        $ret['country']         = $this->getNodeValue($place->getElementsByTagName('country'));
+        $ret['countryCode']     = strtoupper($this->getNodeValue($place->getElementsByTagName('country_code')));
+        $ret['geocodedAddress'] = $this->getNodeValue($place->getElementsByTagName('display_name'));
 
         return array_merge($this->getDefaults(), $ret);
     }
