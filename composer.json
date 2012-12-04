@@ -1,5 +1,5 @@
 {
-    "name": "willdurand/geocoder",
+    "name": "socloz/geocoder",
     "type": "library",
     "description": "The almost missing Geocoder PHP 5.3 library.",
     "keywords": ["geocoder", "geocoding", "abstraction", "geoip"],
@@ -9,6 +9,11 @@
         {
             "name": "William Durand",
             "email": "william.durand1@gmail.com"
+        },
+        {
+            "name": "CloseToMe",
+            "email": "technique@closetome.fr",
+            "homepage": "http://www.socloz.fr"
         }
     ],
     "repositories": [
